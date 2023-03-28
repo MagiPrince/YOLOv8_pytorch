@@ -1,6 +1,6 @@
-# YOLOv8 implementation in Python with Pytorch
+# YOLOv8 implementation in Python with Tensorflow 2
 
-This repo aims to develop an implementation of YOLOv8 in Python with Pytorch in order to be Quantized on FPGA latter.
+This repo aims to develop an implementation of YOLOv8 in Python with Tensorflow 2 in order to be Quantized on FPGA latter.
 
 This work is part of my master thesis in computer science at the University of Geneva.
 
