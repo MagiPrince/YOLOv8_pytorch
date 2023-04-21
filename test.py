@@ -1,6 +1,8 @@
 import torch
 import numpy as np
-from common import Conv, Bottleneck, C2f, SPPF
+from common import Conv, Bottleneck, C2f, SPPF, C2fCustom
+
+torch.manual_seed(0)
 
 # t = torch.tensor(np.moveaxis(np.array([
 #         [
@@ -47,8 +49,14 @@ from common import Conv, Bottleneck, C2f, SPPF
 # print(last)
 # print(last.size())
 
-t = torch.full((16, 8, 12), 2.).unsqueeze(0)
-print(t)
+t = torch.full((1, 3, 8, 5), 2.)
+# print(t)
 print(t.size())
 
-print(C2f(4, 2, False, 4).forward(t))
+t_temp = Conv(3, 16, 3, 2, 1).forward(t)
+t_temp = Conv(16, 32, 3, 2, 1).forward(t_temp)
+print(t_temp)
+print(t_temp.size())
+print(C2f(32, 32, True, 1).forward(t_temp))
+print(t_temp)
+print(C2fCustom(32, 32, True, 1).forward(t_temp))
