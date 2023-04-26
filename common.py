@@ -35,8 +35,8 @@ class Bottleneck(nn.Module):
 
         self.shortcut = shortcut
         self.bottleneck = nn.Sequential(
-            Conv(c_, c_*0.5, 3, 1, 1),
-            Conv(c_*0.5, c_, 3, 1, 1),
+            Conv(c_, c_, 3, 1, 1),
+            Conv(c_, c_, 3, 1, 1),
         )
 
     def forward(self, input):
@@ -92,4 +92,8 @@ class SPPF():
 
 
 class Detect():
-    pass
+    def __init__(self, c_, nc=1):
+        super(Detect, self).__init__()
+        self.nc = nc  # number of classes
+        
+        self.reg_max = 16  # DFL channels (ch[0] // 16 to scale 4/8/12/16/20 for n/s/m/l/x)
